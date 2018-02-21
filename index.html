@@ -1,0 +1,223 @@
+!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Around The Block</title>
+
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- css style sheet -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <!--Google fonts -->
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Bitter|Bree+Serif');
+  </style>
+  <!-- firebase -->
+  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+
+</head>
+
+
+<body>
+
+
+  <!-- <script  type="text/javascript"  charset="utf-8">
+    (function(w,d,t,f){  w[f]=w[f]||function(c,k,n){s=w[f],k=s['k']=(s['k']||(k?('&k='+k):''));s['c']=
+    c=(c  instanceof  Array)?c:[c];s['n']=n=n||0;L=d.createElement(t),e=d.getElementsByTagName(t)[0];
+    L.async=1;L.src='//feed.aqicn.org/feed/'+(c[n].city)+'/'+(c[n].lang||'')+'/feed.v1.js?n='+n+k;
+    e.parentNode.insertBefore(L,e);  };  })(  window,document,'script','_aqiFeed'  );
+  </script> -->
+
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="index.html" action="index.html">Around The Block - An Awesome Neighborhood Search Site!</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+
+      <div class="item active">
+        <img src="assets\moving is hard.jpg" alt="moving boxes" style="width:100%;height:400px">
+        <div class="carousel-caption">
+          <h2>Planning A Move?</h2>
+          <p>Check Out the Area First!</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <img src="assets\beach footprints.jpg" alt="on the beach" style="width:100%;height:400px">
+        <div class="carousel-caption">
+          <h2>Vacation Time?</h2>
+          <p>We Can Help You Choose a Destination!</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <img src="assets\city roads night.jpg" alt="city at night" style="width:100%;height:400px">
+        <div class="carousel-caption">
+          <h2>Explore Your Hometown...</h2>
+          <p>...or any city in America!</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+  <div class="container text-center">
+    <h1>Around The Block</h1>
+    <div class="site-description">
+      <p>Are you looking to relocate? How about visit a new locale for your next vacation? Or maybe you're bored of sitting on the couch this weekend...? Then give us a try! We're Around The Block, and we're wherever you want to be--looking for the best
+        neighborhoods, schools, and safety information... OR the best restaurants, attractions, and fun stuff to do! Let's get started!</p>
+    </div>
+
+    <form id="search">
+      <h3>Start Your Search: </h3>
+      <form action="/action_page.php">
+        <select name="search-options">
+           <option value="city-state">City, State</option>
+           <option value="zipcode">Zip Code</option>
+        </select>
+
+
+        <input type="text" value id="input-city" placeholder="">
+        <input type="submit" id="submit-button" value="search">
+      </form>
+
+    </form>
+
+
+    <div class="row">
+
+      <div class="col-sm-4">
+        <h3>Schools</h3>
+        <img src="assets\kids-in-school.jpg" alt="kids in school" class="img-responsive" style="width:400px;height:300px">
+        <p>We know one of the most important decisions in relocating is schooling for your children. At Around the Block, we can connect you with the information you need to make the best school choice for your kids!</p>
+      </div>
+      <div class="col-sm-4">
+        <h3>Crime Statistics</h3>
+        <img src="assets\happy cops.jpg" class="img-responsive" style="width:400px;height:300px" alt="police">
+        <p>At Around the Block, we want you to be safe--so that you can focus on the more fun aspects of life! Start your search and get all the information you need about safety and crime in your area--and start living worry free!</p>
+      </div>
+      <div class="col-sm-4">
+        <h3>Weather</h3>
+        <img src="assets\sunny weather.jpg" class="img-responsive" style="width:400px;height:300px" alt="the sun">
+        <p>Is your idea of paradise a warm spot on a sunny beach? Or is it more like next to a roaring fire on a cold winter's day? Either way, Around the Block has you covered. Start your search now to see the best climate information for your area or vacation
+          destination!</p>
+      </div>
+
+    </div>
+  </div><br>
+
+
+  <div class="search-results">
+    <div id="city-name-here"></div>
+
+    <!-- divs for each api we have -->
+    <div class="data-divs">
+
+      <div class="col-md-6">
+        <div id="schools">
+          <h5>Schools</h5>
+          <div class="row">
+            <p>Lorem ipsum...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="col-md-6"> -->
+        <div class="col-md-6" id="weather">
+          <!-- <h5>Weather</h5>
+          <div class="row">
+            <p>Lorem ipsum...</p>
+          </div> -->
+        </div>
+
+
+      <div class="col-md-6">
+        <div id="crime">
+          <h5>Crime Statistics</h5>
+          <div class="row">
+            <p>Lorem ipsum...</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div id="concerts">
+          <h5>Concerts</h5>
+          <div class="row">
+            <p>Lorem ipsum...</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div id="walkability">
+          <h5>Walkability - Coming Soon!</h5>
+          <div class="row">
+            <p>Lorem ipsum...</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div id="parks">
+          <h5>Parks - Coming Soon!</h5>
+          <div class="row">
+            <p>Lorem ipsum...</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <footer>
+    <div class="container">
+
+      Copyright &copy; 2018 Around The Block
+  </footer>
+
+  <!-- javascipt & jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="script.js"></script>
+
+<script>jQuery.ajaxPrefilter(function(options) {
+    if (options.crossDomain && jQuery.support.cors) {
+        options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
+    }
+});</script>
+</body>
+
+</html>

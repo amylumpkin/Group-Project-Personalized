@@ -1,0 +1,70 @@
+h1, h2, h3, h4, h5, h6, p {font-family: 'Bree Serif', serif;}
+
+#container.text-center  {font-family: 'Bree Serif', serif;}
+
+h3 {
+  font-size:25px;
+  text-align: center;
+}
+h5 {
+  font-size: 20px;
+}
+    p {
+      font-family: 'Bree Serif', serif;
+      font-size: 16px;
+
+    }
+
+    .text-center {
+      font-size: 24px;
+    }
+
+    #city-name-here {
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .col-md-6 {
+      background-color: #f5f5f5;
+      padding: 20px;
+      width: 50%;
+      border: 20px solid #ffffff;
+      height: 90%;
+      overflow: auto;
+      text-align: center;
+    }
+
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    .col-sm-4 {
+      width: 33.33333333%;
+      padding-top: 10px;
+      color:#405d27;
+
+
+    }
+
+    footer {
+      background-color:#f5f5f5;
+      padding: 25px;
+      text-orientation: center;
+      text-align: center;
+      color: black;
+      height: 35px;
+      overflow: auto;
+    }
+
+    .carousel-inner img {
+      width: 100%;
+      margin: auto;
+
+    }
+/* Hides the carousel text when the screen is less than 600 pixels wide */
+        @media (max-width: 600px) {
+          .carousel-caption {
+            display: none;
+        }
+      }
